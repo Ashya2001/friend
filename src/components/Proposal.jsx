@@ -3,64 +3,64 @@ import React, { useState } from "react";
 function Proposal() {
   const [accepted, setAccepted] = useState(false);
 
-const moveButton = (e) => {
-  const btn = e.target;
-  const parent = btn.parentElement; // 👈 buttons container
+  const moveButton = (e) => {
+    const btn = e.target;
+    const parent = btn.parentElement;
 
-  const maxX = parent.clientWidth - btn.offsetWidth;
-  const maxY = parent.clientHeight - btn.offsetHeight;
+    const maxX = parent.clientWidth - btn.offsetWidth;
+    const maxY = parent.clientHeight - btn.offsetHeight;
 
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
-  btn.style.left = x + "px";
-  btn.style.top = y + "px";
-};
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+  };
 
   return (
     <div className="container">
       {!accepted ? (
         <>
-          <img src="/ss.png" alt="Sweety" className="profile-img" />
+          <img src="/ss.png" alt="Rinki" className="profile-img" />
 
-          <h1>Hey Sweety ❤️</h1>
-          <h2>Tu meri best friend hai... 😊</h2>
+          <h1>Hey Rinki 😊</h1>
 
           <p className="main-text">
-            Tu meri life ka sabse special part hai 💖  
-            Aur aaj kuch dil se bolna hai...
+            Shayad humne zyada baat nahi ki hai ab tak...  
+            Par tu mujhe achhi lagti hai as a person 🙂  
+            Socha aaj seedha puch hi leta hoon...
           </p>
 
-          <h3>Will you be my girlfriend? 💕</h3>
+          <h3>Will you be my friend? 🤝</h3>
 
           <div className="buttons">
             <button className="yes" onClick={() => setAccepted(true)}>
-              Yes 😍
+              Yes 😊
             </button>
 
             <button
               className="no"
               onMouseEnter={moveButton}
-              onTouchStart={moveButton}  // 📱 mobile ke liye
+              onTouchStart={moveButton}
             >
-              No 😅
+              Sochungi 😅
             </button>
           </div>
         </>
       ) : (
         <div className="success-card">
-          <img src="/ss.png" alt="Sweety" className="profile-img big-img" />
+          <img src="/ss.png" alt="Rinki" className="profile-img big-img" />
 
-          <h1>Yayyy Sweety! 🎉❤️</h1>
+          <h1>Yayyy Rinki! 🎉</h1>
 
           <p className="love-text">
-            Ab tu meri girlfriend hai 😍  
-            Aur ye moment mere liye sabse special hai 💖
+            Ab officially hum dost hain 😄  
+            Aur mujhe khushi hai ki maine aaj ye pucha 🤝
           </p>
 
           <p className="tagline">
-            Best friend ➝ Girlfriend ❤️  
-            Perfect Story 😎✨
+            New Friendship Started ✨  
+            Simple • Real • Honest 😊
           </p>
         </div>
       )}
