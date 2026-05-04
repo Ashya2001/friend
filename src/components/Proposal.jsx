@@ -23,7 +23,7 @@ function Proposal() {
         <>
           <img src="/ss.png" alt="Laxmi" className="profile-img" />
 
-          <h1>Hey Mishra ji 😊</h1>
+          <h1>Hey Laxmi ji 😊</h1>
 
           <p className="main-text">
             Shayad humne zyada baat nahi ki hai ab tak...  
@@ -51,7 +51,7 @@ function Proposal() {
         <div className="success-card">
           <img src="/ss.png" alt="Laxmi" className="profile-img big-img" />
 
-          <h1>Yayyy ! 🎉</h1>
+          <h1>Yayyy Laxmi! 🎉</h1>
 
           <p className="love-text">
             Ab officially hum dost hain 😄  
