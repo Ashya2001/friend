@@ -21,9 +21,9 @@ function Proposal() {
     <div className="container">
       {!accepted ? (
         <>
-          <img src="/ss.png" alt="Rinki" className="profile-img" />
+          <img src="/ss.png" alt="Laxmi" className="profile-img" />
 
-          <h1>Hey Rinki 😊</h1>
+          <h1>Hey Mishra ji 😊</h1>
 
           <p className="main-text">
             Shayad humne zyada baat nahi ki hai ab tak...  
@@ -43,15 +43,15 @@ function Proposal() {
               onMouseEnter={moveButton}
               onTouchStart={moveButton}
             >
-              Sochungi 😅
+              No 😅
             </button>
           </div>
         </>
       ) : (
         <div className="success-card">
-          <img src="/ss.png" alt="Rinki" className="profile-img big-img" />
+          <img src="/ss.png" alt="Laxmi" className="profile-img big-img" />
 
-          <h1>Yayyy Rinki! 🎉</h1>
+          <h1>Yayyy ! 🎉</h1>
 
           <p className="love-text">
             Ab officially hum dost hain 😄  
