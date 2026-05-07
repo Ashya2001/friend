@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../App.css";
 
 function Proposal() {
   const [accepted, setAccepted] = useState(false);
@@ -13,57 +14,88 @@ function Proposal() {
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
-    btn.style.left = x + "px";
-    btn.style.top = y + "px";
+    btn.style.left = `${x}px`;
+    btn.style.top = `${y}px`;
   };
 
   return (
-    <div className="container">
-      {!accepted ? (
-        <>
-          <img src="/ss.png" alt="Laxmi" className="profile-img" />
+    <div className="app">
+      <div className="container">
+        {!accepted ? (
+          <>
+            <img src="/ss.png" alt="Anu" className="profile-img" />
 
-          <h1>Hey Laxmi ji 😊</h1>
+            <h1>Hey Dr. Anu 👩‍⚕️✨</h1>
 
-          <p className="main-text">
-            Shayad humne zyada baat nahi ki hai ab tak...  
-            Par tu mujhe achhi lagti hai as a person 🙂  
-            Socha aaj seedha puch hi leta hoon...
-          </p>
+            <p className="main-text">
+              Shayad humari zyada baatein nahi hui ab tak... <br />
+              Par jitni bhi hui hain, unmein ek alag si positivity mili 😊
+              <br />
+              <br />
+              Aur sach bolu...
+            </p>
 
-          <h3>Will you be my friend? 🤝</h3>
+            <div className="shayari-box">
+              <p className="shayari">
+                “Kuch log milte hi ache lagne lagte hain, <br />
+                Na wajah chahiye, na zyada waqt ❤️ <br />
+                Bas dil kehta hai... <br />
+                Inse friendship thodi aur special honi chahiye ✨”
+              </p>
+            </div>
 
-          <div className="buttons">
-            <button className="yes" onClick={() => setAccepted(true)}>
-              Yes 😊
-            </button>
+            <h3>
+              Toh Dr. Sahiba 🤭 <br />
+              Will you be my Best Friend? 🌸
+            </h3>
 
-            <button
-              className="no"
-              onMouseEnter={moveButton}
-              onTouchStart={moveButton}
-            >
-              No 😅
-            </button>
+            <div className="buttons">
+              <button
+                className="yes"
+                onClick={() => setAccepted(true)}
+              >
+                Haan 😊
+              </button>
+
+              <button
+                className="no"
+                onMouseEnter={moveButton}
+                onTouchStart={moveButton}
+              >
+                Sochungi 😅
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className="success-card">
+            <img
+              src="/ss.png"
+              alt="Anu"
+              className="profile-img big-img"
+            />
+
+            <h1>Yayyy Dr. Anu 🎉</h1>
+
+            <p className="love-text">
+              Ab officially hum Best Friends hain 😄🤝
+              <br />
+              Aur mujhe sach me bahut accha laga ki maine ye pucha ✨
+            </p>
+
+            <div className="friendship-box">
+              <p className="friendship-line">
+                “Har achhi friendship ki shuruaat <br />
+                ek simple ‘Hi’ se hoti hai 😊”
+              </p>
+            </div>
+
+            <p className="tagline">
+              New Bond Started 🌸 <br />
+              Pure • Respectful • Real ✨
+            </p>
           </div>
-        </>
-      ) : (
-        <div className="success-card">
-          <img src="/ss.png" alt="Laxmi" className="profile-img big-img" />
-
-          <h1>Yayyy Laxmi! 🎉</h1>
-
-          <p className="love-text">
-            Ab officially hum dost hain 😄  
-            Aur mujhe khushi hai ki maine aaj ye pucha 🤝
-          </p>
-
-          <p className="tagline">
-            New Friendship Started ✨  
-            Simple • Real • Honest 😊
-          </p>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
