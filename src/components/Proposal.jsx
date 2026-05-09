@@ -23,9 +23,9 @@ function Proposal() {
       <div className="container">
         {!accepted ? (
           <>
-            <img src="/ss.png" alt="Anu" className="profile-img" />
+            <img src="/ss.png" alt="Mehak " className="profile-img" />
 
-            <h1>Hey Dr. Anu 👩‍⚕️✨</h1>
+            <h1>Hey Mehak  👩‍⚕️✨</h1>
 
             <p className="main-text">
               Shayad humari zyada baatein nahi hui ab tak... <br />
@@ -45,7 +45,7 @@ function Proposal() {
             </div>
 
             <h3>
-              Toh Dr. Sahiba 🤭 <br />
+              Toh Mehak  🤭 <br />
               Will you be my Best Friend? 🌸
             </h3>
 
@@ -74,7 +74,7 @@ function Proposal() {
               className="profile-img big-img"
             />
 
-            <h1>Yayyy Dr. Anu 🎉</h1>
+            <h1>Yayyy Mehak  🎉</h1>
 
             <p className="love-text">
               Ab officially hum Best Friends hain 😄🤝
