@@ -1,200 +1,193 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../App.css";
 
-function Proposal() {
+const Proposal = () => {
+  const [questionOpen, setQuestionOpen] = useState(false);
+  const [answer, setAnswer] = useState(null);
+  const [buttonPosition, setButtonPosition] = useState({ x: 0, y: 0 });
+  const [hearts, setHearts] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
-  const [accepted, setAccepted] = useState(false);
-  const [showText, setShowText] = useState(false);
-
+  // Trigger animation on mount
   useEffect(() => {
-
-    const timer = setTimeout(() => {
-      setShowText(true);
-    }, 600);
-
-    return () => clearTimeout(timer);
-
+    setLoaded(true);
   }, []);
 
-const moveButton = (e) => {
+  // Floating hearts
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const id = Date.now();
+      setHearts((prev) => [...prev, { id, x: Math.random() * 100, y: 100 }]);
+      setTimeout(() => {
+        setHearts((prev) => prev.filter((h) => h.id !== id));
+      }, 4000);
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
 
-  e.preventDefault();
-  e.stopPropagation();
-
-  const btn = e.currentTarget;
-  const parent = btn.parentElement;
-
-  const maxX = parent.clientWidth - btn.offsetWidth - 20;
-  const maxY = parent.clientHeight - btn.offsetHeight - 20;
-
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
-
-  btn.style.left = `${randomX}px`;
-  btn.style.top = `${randomY}px`;
-};
+  // Move "No" button
+  const moveButton = (e) => {
+    const btn = e.target;
+    const container = btn.parentElement;
+    const maxX = container.clientWidth - btn.offsetWidth;
+    const maxY = container.clientHeight - btn.offsetHeight;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    setButtonPosition({ x, y });
+  };
 
   return (
+    <div className={`farewell-app ${loaded ? "loaded" : ""}`}>
+      {hearts.map((heart) => (
+        <div
+          key={heart.id}
+          className="floating-heart"
+          style={{ left: `${heart.x}%`, top: `-20px` }}
+        >
+          ❤️
+        </div>
+      ))}
 
-    <div className="app">
+      <div className="farewell-container">
+        {/* Header */}
+        <div className="farewell-header animate-item">
+          <h1 className="glow-text">✨ Aakhri Baat ✨</h1>
+          <p className="subheadline">
+            Shayad aaj last day ho baat karne ka... <br />
+            Jaane se pehle, dil ki baat kehni hai.
+          </p>
+        </div>
 
-      {/* BACKGROUND */}
-      <div className="bg-circle one"></div>
-      <div className="bg-circle two"></div>
-      <div className="bg-circle three"></div>
-
-      {/* FLOATING ICONS */}
-      <span className="floating-heart h1">💖</span>
-      <span className="floating-heart h2">✨</span>
-      <span className="floating-heart h3">🌸</span>
-      <span className="floating-heart h4">💜</span>
-
-      <div className="container">
-
-        {!accepted ? (
-
-          <div className="glass-card">
-
-            {/* IMAGE */}
-            <div className="image-wrapper">
-
-              <div className="ring"></div>
-
-              <img
-                src="/ss.png"
-                alt="Zimal Fatima"
-                className="profile-img"
-              />
-
+        {/* Shiva & Aaru Row */}
+        <div className="friends-row">
+          {/* Shiva Card */}
+          <div className="friend-card premium-card animate-item delay-1">
+            <div className="avatar-glow">
+              <div className="avatar">
+                <span className="avatar-initial">S</span>
+              </div>
             </div>
-
-            {/* TITLE */}
-            <h1 className="title">
-              Hey Zimal Fatima ✨
-            </h1>
-
-            {/* SUBTITLE */}
-            <p className="subtitle">
-              A Small Surprise For Someone Truly Special 🌸
+            <h2 className="friend-name">Shiva</h2>
+            <div className="badge">✨ My Best Friend ✨</div>
+            <p className="friend-desc">
+              "Shiva sirf mera dost nahi, ek bhai jaisa hai. <br />
+              Tu hamesa mere dil mein  rahega or teri yaadein mere saath."
             </p>
+            <div className="friendship-line">🤝 Shiva & Ashish – Forever 🤝</div>
+            <div className="friendship-line mt-2">🧑‍🤝‍🧑 Shiva & Aaru – Good Friends 🧑‍🤝‍🧑</div>
+          </div>
 
-            {/* TEXT */}
-            <p className={`main-text ${showText ? "show" : ""}`}>
-
-              Shayad humari baatein abhi zyada nahi hui...
-              <br /><br />
-
-              Lekin tumhari vibes,
-              thinking aur simplicity honestly bahut special lagi 💫
-
-            </p>
-
-            {/* SHAYARI */}
-            <div className="shayari-box">
-
-              <p className="shayari">
-
-                “Kuch log bas ache nahi lagte...
-                <br />
-
-                Dil ko bhi ache lagne lagte hain 💖”
-
-              </p>
-
+          {/* Aaru (Sonali) Card */}
+          <div className="friend-card premium-card animate-item delay-2">
+            <div className="avatar-glow">
+              <div className="avatar">
+                <span className="avatar-initial">A</span>
+              </div>
             </div>
+            <h2 className="friend-name">Aaru (Sonali) 🫧</h2>
+            <div className="badge">💖 Doctor | Healer 💖</div>
+            <p className="friend-desc">
+              "Teri hansee mein dawa hai, teri baaton mein sukoon. <br />
+            Teri smile meri duniya ka sabse beautiful moment hai. 
+  Tu paas ho ya door, meri har khushi mein tera naam hai."
+            </p>
+            <div className="friendship-line">✨ Shiva & Sonali – Good Friends ✨</div>
+          </div>
+        </div>
 
-            {/* QUESTION */}
-            <h2 className="question">
+        {/* Ashish Section */}
+        <div className="ashish-section animate-item delay-3">
+          <div className="ashish-card premium-card">
+            <div className="avatar ashish-avatar">
+              <span className="avatar-initial">A</span>
+            </div>
+            <h2 className="ashish-name">Ashish (Main) 🤍</h2>
+            <div className="badge ashish-badge">💻 IT | Tech & Emotions 💻</div>
+            <p className="ashish-desc">
+        "Rishte distance se nahi, feelings se bante hain. <br />
+Aur meri feelings mein tum hamesha special rahoge."
+            </p>
+          </div>
 
-              So Zimal 🤍
-              <br />
-
-              Will You Be My Best Friend? ✨
-
-            </h2>
-
-            {/* BUTTONS */}
-            <div className="buttons">
-
+          {/* Special Question for Sonali */}
+          <div className="question-section animate-item delay-4">
+            {!questionOpen ? (
               <button
-                className="yes"
-                onClick={() => setAccepted(true)}
+                className="premium-btn ask-btn"
+                onClick={() => setQuestionOpen(true)}
               >
-                Yes💖
+                💌 Sonali, ek baat poochni hai? 💌
               </button>
-
-         <button
-  type="button"
-  className="no"
-  onMouseEnter={moveButton}
-  onTouchStart={moveButton}
-  onClick={(e) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }}
->
-  Sochungi 😅
-</button>
-
-            </div>
-
+            ) : (
+              <div className="question-card glass-pop">
+                {answer === null ? (
+                  <>
+                    <h3 className="question-text">
+                      Sonali, will you be my <span className="highlight">special someone</span>? 🌸
+                    </h3>
+                    <div className="question-buttons">
+                      <button
+                        className="yes-btn"
+                        onClick={() => setAnswer("accepted")}
+                      >
+                        Haan 😊
+                      </button>
+                      <button
+                        className="no-btn"
+                        onMouseEnter={moveButton}
+                        onTouchStart={moveButton}
+                        style={{
+                          position: "relative",
+                          left: `${buttonPosition.x}px`,
+                          top: `${buttonPosition.y}px`,
+                        }}
+                      >
+                        Sochungi 😅
+                      </button>
+                    </div>
+                  </>
+                ) : answer === "accepted" ? (
+                  <div className="success-message">
+                    <span className="heart-glow">❤️‍🔥</span>
+                    <p>
+                      Thank you Sonali! <br />
+                      Ab ye farewell nahi, ek nayi shuruaat hai. 🥺✨
+                    </p>
+                  </div>
+                ) : (
+                  <div className="funny-message">
+                    <p>Chalo, time hai abhi bhi... soch lo 😄</p>
+                    <button
+                      className="premium-btn small-btn"
+                      onClick={() => setAnswer(null)}
+                    >
+                      Wapas poocho 💔
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
-        ) : (
-
-          <div className="success-card">
-
-            {/* SUCCESS IMAGE */}
-            <div className="image-wrapper">
-
-              <div className="ring"></div>
-
-              <img
-                src="/ss.png"
-                alt="Zimal Fatima"
-                className="profile-img big-img"
-              />
-
-            </div>
-
-            {/* SUCCESS TITLE */}
-            <h1 className="success-title">
-
-              Yayyyy Zimal 🎉
-
-            </h1>
-
-            {/* SUCCESS MESSAGE */}
-            <p className="love-text">
-
-              Ab officially hum
-              Best Friends hain 😄🤝
-
-              <br /><br />
-
-              Aur sach me...
-              mujhe bahut accha laga ki maine ye step liya 💖
-
-            </p>
-
-            {/* FOOTER */}
-            <p className="tagline">
-
-              A Beautiful Bond Started 💫
-              <br />
-
-              Pure • Genuine • Respectful 🌸
-
-            </p>
-
+          {/* Promise Button */}
+          <div className="promise-area animate-item delay-5">
+            <button className="premium-btn promise-btn">
+              🤝 Dosti Kabhi Khatam Nahi Hoti 🤝
+            </button>
           </div>
+        </div>
 
-        )}
-
+        {/* Footer */}
+        <div className="farewell-footer animate-item delay-6">
+          <p>
+            🌸 Shiva, Aaru – tum jaise dost milna mushkil hai. <br />
+            Uper raho, main niche bhi hamesha tumhara hi rahunga. <br />
+            Aur Sonali... tumhara jawab intezaar karega. 🌸
+          </p>
+        </div>
       </div>
-
     </div>
   );
-}
+};
 
 export default Proposal;
