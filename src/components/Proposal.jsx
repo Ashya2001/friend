@@ -116,7 +116,7 @@ Aur meri feelings mein tum hamesha special rahoge."
                 className="premium-btn ask-btn"
                 onClick={() => setQuestionOpen(true)}
               >
-                💌 Sonali, ek baat poochni hai? 💌
+                
               </button>
             ) : (
               <div className="question-card glass-pop">
